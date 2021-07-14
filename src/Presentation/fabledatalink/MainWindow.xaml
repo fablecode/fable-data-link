@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:fabledatalink"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Fable Data Link" Height="469" Width="366" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-
+        <TabControl Margin="10">
+            <TabItem Header="Provider">
+                <Label Content="Content goes here..." />
+            </TabItem>
+            <TabItem Header="Connection" />
+        </TabControl>
     </Grid>
 </Window>
