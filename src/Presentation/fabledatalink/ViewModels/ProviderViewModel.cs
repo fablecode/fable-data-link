@@ -11,4 +11,6 @@
         {
         }
     }
+
+    public record ProviderModel(string Name, string About, string Image);
 }

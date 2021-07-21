@@ -4,9 +4,41 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:fabledatalink.Views.UserControls"
+             xmlns:vm="clr-namespace:fabledatalink.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:ProviderViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Resources/FableDataLinkResources.xaml"/>
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock>This is the Providers tab.</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Margin="10, 0, 0, 0">Select the data you want to connect to:</Label>
+        <Border x:Name="ProviderBorder" Grid.Row="1" BorderThickness="1" BorderBrush="Black" Margin="25, 0, 10, 0">
+            <ScrollViewer BorderBrush="Black" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Label FontSize="13" Margin="0, 0, 0, 5" FontWeight="Regular">Database Provider(s)</Label>
+                    <ListBox Padding="5">
+                        <ListBoxItem Content="Microsoft SQL Server"></ListBoxItem>
+                        <ListBoxItem Content="SQLite"></ListBoxItem>
+                        <ListBoxItem Content="Postgres"></ListBoxItem>
+                        <ListBoxItem Content="Milk"></ListBoxItem>
+                        <ListBoxItem Content="Iced Tea"></ListBoxItem>
+                        <ListBoxItem Content="Mango Shake"></ListBoxItem>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,10,0">
+            <Button Content="Next >>" Padding="25, 0, 25, 0"/>
+        </WrapPanel>
     </Grid>
 </UserControl>

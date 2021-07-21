@@ -28,4 +28,21 @@
     </DataTemplate>
 
     <!--End Main tab control-->
+
+    <Style TargetType="ListBox" x:Key="ListStyle" BasedOn="{StaticResource {x:Type ListBox}}">
+        <Style.Triggers>
+            <DataTrigger 
+                Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Items.Count}" 
+                Value="0"
+            >
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <TextBlock Margin="5, 0, 0, 0">No items to display</TextBlock>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
