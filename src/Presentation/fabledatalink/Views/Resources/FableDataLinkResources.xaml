@@ -1,0 +1,31 @@
+﻿<!--
+    This is a resource dictionary used by FableDataLink view
+-->
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:fabledatalink.ViewModels"
+    xmlns:v="clr-namespace:fabledatalink.Views.UserControls">
+
+    <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+    <!--Begin Main tab control-->
+
+    <!-- 
+      This template applies an Providers UserControl to an instance 
+      of the ProviderViewModel class shown in the main window.
+    -->
+    <DataTemplate DataType="{x:Type vm:ProviderViewModel}">
+        <v:Providers />
+    </DataTemplate>
+
+    <!-- 
+      This template applies an Connections UserControl to an instance 
+      of the ConnectionViewModel class shown in the main window.
+    -->
+    <DataTemplate DataType="{x:Type vm:ConnectionViewModel}">
+        <v:Connections />
+    </DataTemplate>
+
+    <!--End Main tab control-->
+</ResourceDictionary>
