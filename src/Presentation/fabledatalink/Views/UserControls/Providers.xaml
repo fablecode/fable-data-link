@@ -11,7 +11,7 @@
         <vm:ProviderViewModel />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <ResourceDictionary Source="../Resources/FableDataLinkResources.xaml"/>
+        <ResourceDictionary Source="../Resources/ProviderResources.xaml"/>
     </UserControl.Resources>
 
     <Grid>
@@ -24,21 +24,37 @@
         <Label Grid.Row="0" Margin="10, 0, 0, 0">Select the data you want to connect to:</Label>
         <Border x:Name="ProviderBorder" Grid.Row="1" BorderThickness="1" BorderBrush="Black" Margin="25, 0, 10, 0">
             <ScrollViewer BorderBrush="Black" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <Label FontSize="13" Margin="0, 0, 0, 5" FontWeight="Regular">Database Provider(s)</Label>
-                    <ListBox Padding="5">
-                        <ListBoxItem Content="Microsoft SQL Server"></ListBoxItem>
-                        <ListBoxItem Content="SQLite"></ListBoxItem>
-                        <ListBoxItem Content="Postgres"></ListBoxItem>
-                        <ListBoxItem Content="Milk"></ListBoxItem>
-                        <ListBoxItem Content="Iced Tea"></ListBoxItem>
-                        <ListBoxItem Content="Mango Shake"></ListBoxItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+                    <Label FontSize="13" Grid.Row="0" FontWeight="Regular">Database Provider(s)</Label>
+                    <ListBox Grid.Row="1" Padding="5" BorderThickness="0" ItemsSource="{Binding DatabaseProviders, Mode=OneWay}" SelectedItem="{Binding SelectedProvider}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Path=Name}"
+                                               FontWeight="Bold"
+                                               Grid.Column="1"
+                                               Grid.Row="0" Margin="0, 0, 0, 5"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
-                </StackPanel>
+                </Grid>
             </ScrollViewer>
         </Border>
         <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,10,0">
-            <Button Content="Next >>" Padding="25, 0, 25, 0"/>
+            <Button Content="Next >>" Padding="10, 0" IsEnabled="{Binding IsNextButtonEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </WrapPanel>
     </Grid>
 </UserControl>
