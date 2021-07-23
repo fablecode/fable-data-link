@@ -1,11 +1,13 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using System;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.Toolkit.Mvvm.Messaging.Messages;
 
 namespace fabledatalink.ViewModels
 {
-    public sealed class ConnectionViewModel : WorkspaceViewModel, IRecipient<SelectedProviderChangedMessage>
+    public sealed class ConnectionViewModel : WorkspaceViewModel
     {
+        private WorkspaceViewModel? _selectedDatabaseProvider;
+
         public ConnectionViewModel()
             : this("Connection")
         {
@@ -13,16 +15,27 @@ namespace fabledatalink.ViewModels
         public ConnectionViewModel(string provider)
             : base(provider)
         {
-            // Register that specific message...
-            WeakReferenceMessenger.Default.Register(this);
         }
 
-        public void Receive(SelectedProviderChangedMessage message)
+
+        public WorkspaceViewModel SelectedDatabaseProvider
         {
-            DataContext = message.DatabaseProvider.WorkSpace;
+            get => GetSelectedDatabaseProvider() ?? throw new ArgumentNullException(nameof(SelectedDatabaseProvider), $"{nameof(ConnectionViewModel)} -> {nameof(SelectedDatabaseProvider)}: Database provider not selected.");
+            set => SetProperty(ref _selectedDatabaseProvider, value);
         }
 
-        public WorkspaceViewModel DataContext { get; set; }
+        private static WorkspaceViewModel? GetSelectedDatabaseProvider()
+        {
+            // Request selected database provider
+            var databaseProvider = WeakReferenceMessenger.Default.Send<SelectedDatabaseProviderRequestMessage>();
+
+            if (databaseProvider.HasReceivedResponse && databaseProvider.Response != null)
+            {
+                return databaseProvider.Response.WorkSpace;
+            }
+
+            return null;
+        }
     }
 
     public class SelectedProviderChangedMessage : ValueChangedMessage<DatabaseProvider>
@@ -34,5 +47,9 @@ namespace fabledatalink.ViewModels
         }
 
         public DatabaseProvider DatabaseProvider { get; }
+    }
+
+    public class SelectedDatabaseProviderRequestMessage : RequestMessage<DatabaseProvider>
+    {
     }
 }

@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:fabledatalink.ViewModels"
+                    xmlns:v="clr-namespace:fabledatalink.Views.UserControls">
+
+    <!-- 
+      This template applies an SqlServerConnectionView UserControl to an instance 
+      of the SqlServerConnectionViewModel class shown in the Connection tab.
+    -->
+    <DataTemplate DataType="{x:Type vm:SqlServerConnectionViewModel}">
+        <v:SqlServerConnectionView />
+    </DataTemplate>
+
+    <!-- 
+      This template applies an SqliteConnectionView UserControl to an instance 
+      of the SqlLiteConnectionViewModel class shown in the Connection tab.
+    -->
+    <DataTemplate DataType="{x:Type vm:SqlLiteConnectionViewModel}">
+        <v:SqliteConnectionView />
+    </DataTemplate>
+
+    <!-- 
+      This template applies an MySqlConnectionView UserControl to an instance 
+      of the MySqlConnectionViewModel class shown in the Connection tab.
+    -->
+    <DataTemplate DataType="{x:Type vm:MySqlConnectionViewModel}">
+        <v:MySqlConnectionView />
+    </DataTemplate>
+
+
+</ResourceDictionary>

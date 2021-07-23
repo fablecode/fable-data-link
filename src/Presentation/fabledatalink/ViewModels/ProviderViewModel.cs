@@ -27,15 +27,16 @@ namespace fabledatalink.ViewModels
 
         public DatabaseProvider SelectedProvider
         {
-            get => _selectedProvider;
+            get => WeakReferenceMessenger.Default.Send<SelectedDatabaseProviderRequestMessage>();
             set
             {
                 SetProperty(ref _selectedProvider, value);
 
                 if(value != null)
                 {
-                    IsNextButtonEnabled = true;
+                    // Send a message from some other module
                     WeakReferenceMessenger.Default.Send(new SelectedProviderChangedMessage(value));
+                    IsNextButtonEnabled = true;
                 }
             }
         }

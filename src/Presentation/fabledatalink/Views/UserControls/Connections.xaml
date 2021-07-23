@@ -11,8 +11,8 @@
     <UserControl.DataContext>
         <vm:ConnectionViewModel />
     </UserControl.DataContext>
-
-    <Grid>
-        <TextBlock>This is the Connections tab.</TextBlock>
-    </Grid>
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Views/Resources/ConnectionResources.xaml"/>
+    </UserControl.Resources>
+    <ContentControl Content="{Binding SelectedDatabaseProvider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 </UserControl>

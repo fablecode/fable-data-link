@@ -30,7 +30,7 @@
                         <RowDefinition Height="10*"/>
                     </Grid.RowDefinitions>
                     <Label FontSize="13" Grid.Row="0" FontWeight="Regular">Database Provider(s)</Label>
-                    <ListBox Grid.Row="1" Padding="5" BorderThickness="0" ItemsSource="{Binding DatabaseProviders, Mode=OneWay}" SelectedItem="{Binding SelectedProvider}">
+                    <ListBox Grid.Row="1" Padding="5" BorderThickness="0" ItemsSource="{Binding DatabaseProviders, Mode=OneWay}" SelectedItem="{Binding SelectedProvider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="5">

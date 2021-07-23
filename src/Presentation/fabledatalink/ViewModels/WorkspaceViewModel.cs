@@ -2,7 +2,7 @@
 
 namespace fabledatalink.ViewModels
 {
-    public abstract class WorkspaceViewModel : ObservableRecipient
+    public abstract class WorkspaceViewModel : ObservableObject
     {
         private string _displayName;
 
