@@ -57,7 +57,9 @@
             </ScrollViewer>
         </Border>
         <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,10,0">
-            <Button Content="Next >>" Padding="10, 0" IsEnabled="{Binding IsNextButtonEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Next >>" Padding="10, 0" 
+                    IsEnabled="{Binding IsNextButtonEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding NextCommand}"/>
         </WrapPanel>
     </Grid>
 </UserControl>

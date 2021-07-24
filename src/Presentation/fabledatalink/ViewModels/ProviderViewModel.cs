@@ -1,14 +1,22 @@
-﻿using Microsoft.Toolkit.Mvvm.Messaging;
-using System.Collections.ObjectModel;
+﻿using fabledatalink.Messages;
+using fabledatalink.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
+using System.Collections.ObjectModel;
 
 namespace fabledatalink.ViewModels
 {
     public sealed class ProviderViewModel : ObservableObject
     {
-        private DatabaseProvider _selectedProvider;
+        private DatabaseProvider _selectedProvider = null!;
         private bool _isNextButtonEnabled;
         private int _selectedProviderIndex;
+
+        public ProviderViewModel()
+        {
+            NextCommand = new RelayCommand(OnNextCommand);
+        }
 
         public ObservableCollection<DatabaseProvider> DatabaseProviders => new()
         {
@@ -47,19 +55,12 @@ namespace fabledatalink.ViewModels
             get => _isNextButtonEnabled;
             set => SetProperty(ref _isNextButtonEnabled, value);
         }
-    }
 
-    public sealed class MySqlConnectionViewModel : WorkspaceViewModel
-    {
-    }
+        public RelayCommand NextCommand { get; }
 
-    public sealed class SqlLiteConnectionViewModel : WorkspaceViewModel
-    {
+        private static void OnNextCommand()
+        {
+            WeakReferenceMessenger.Default.Send(new SelectConnectionViewMessage());
+        }
     }
-
-    public sealed class SqlServerConnectionViewModel : WorkspaceViewModel
-    {
-    }
-
-    public record DatabaseProvider(string Name, WorkspaceViewModel WorkSpace);
 }

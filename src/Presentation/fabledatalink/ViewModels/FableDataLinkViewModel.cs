@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using fabledatalink.Messages;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
@@ -6,7 +7,6 @@ namespace fabledatalink.ViewModels
 {
     public sealed class FableDataLinkViewModel: ObservableRecipient
     {
-        private WorkspaceViewModel _selectedWorkspace;
         private int _selectedWorkspaceIndex;
         private bool _isConnectionViewEnabled;
 
@@ -14,14 +14,12 @@ namespace fabledatalink.ViewModels
         {
             // Using a method group...
             Messenger.Register<FableDataLinkViewModel, SelectedProviderChangedMessage>(this, (r, m) => r.Receive(m));
+            Messenger.Register<FableDataLinkViewModel, SelectConnectionViewMessage>(this, (r, m) => r.ReceiveSelectConnectionViewMessage());
         }
 
-        public ObservableCollection<WorkspaceViewModel> WorkSpaces { get; }
-
-        public WorkspaceViewModel SelectedWorkspace
+        private void ReceiveSelectConnectionViewMessage()
         {
-            get => _selectedWorkspace;
-            set => SetProperty(ref _selectedWorkspace, value);
+            SelectedWorkspaceIndex = 1;
         }
 
         public int SelectedWorkspaceIndex

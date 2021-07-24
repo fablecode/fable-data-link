@@ -18,20 +18,10 @@
             <RowDefinition Height="9*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <!--<TabControl Margin="10,10,10,0" Grid.Row="0"
-                    ItemsSource="{Binding WorkSpaces, Mode=OneTime, UpdateSourceTrigger=PropertyChanged}" 
-                    IsSynchronizedWithCurrentItem="True" 
-                    SelectedIndex="{Binding SelectedWorkspaceIndex}"
-                    SelectedItem="{Binding SelectedWorkspace}">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}"/>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-        </TabControl>-->
-        <TabControl Margin="10,10,10,0" Grid.Row="0">
+        <TabControl Margin="10,10,10,0" Grid.Row="0"
+                    SelectedIndex="{Binding SelectedWorkspaceIndex}">
             <TabItem Header="Providers">
-                <uc:Providers></uc:Providers>
+                <uc:Providers/>
             </TabItem>
             <TabItem Header="Connection" IsEnabled="{Binding IsConnectionViewEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <uc:Connections />
