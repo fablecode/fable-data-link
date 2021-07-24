@@ -7,6 +7,7 @@
                   xmlns:uc="clr-namespace:fabledatalink.Views.UserControls"
                   xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                   mc:Ignorable="d"
+                  Icon="/favicon.ico"
                   Title="Fable Data Link" Height="469" Width="366" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" x:Name="AppWindow">
     <Window.DataContext>
         <vm:FableDataLinkViewModel />
