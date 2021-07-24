@@ -1,22 +1,14 @@
-﻿using System.Collections.ObjectModel;
-using System.Runtime.InteropServices;
-using Microsoft.Toolkit.Mvvm.Messaging;
+﻿using Microsoft.Toolkit.Mvvm.Messaging;
+using System.Collections.ObjectModel;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace fabledatalink.ViewModels
 {
-    public sealed class ProviderViewModel : WorkspaceViewModel
+    public sealed class ProviderViewModel : ObservableObject
     {
         private DatabaseProvider _selectedProvider;
         private bool _isNextButtonEnabled;
-
-        public ProviderViewModel()
-            : this("Provider")
-        {
-        }
-        public ProviderViewModel(string provider)
-            : base(provider)
-        {
-        }
+        private int _selectedProviderIndex;
 
         public ObservableCollection<DatabaseProvider> DatabaseProviders => new()
         {
@@ -25,18 +17,27 @@ namespace fabledatalink.ViewModels
             new DatabaseProvider("MySQL", new MySqlConnectionViewModel())
         };
 
+        public int SelectedProviderIndex
+        {
+            get => _selectedProviderIndex;
+            set => SetProperty(ref _selectedProviderIndex, value);
+        }
+
         public DatabaseProvider SelectedProvider
         {
-            get => WeakReferenceMessenger.Default.Send<SelectedDatabaseProviderRequestMessage>();
+            get => _selectedProvider;
             set
             {
                 SetProperty(ref _selectedProvider, value);
 
-                if(value != null)
+                if (value != null)
                 {
-                    // Send a message from some other module
                     WeakReferenceMessenger.Default.Send(new SelectedProviderChangedMessage(value));
                     IsNextButtonEnabled = true;
+                }
+                else
+                {
+                    IsNextButtonEnabled = false;
                 }
             }
         }

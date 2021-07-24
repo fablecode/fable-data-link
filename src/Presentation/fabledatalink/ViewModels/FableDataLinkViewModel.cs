@@ -1,44 +1,44 @@
 ﻿using System.Collections.ObjectModel;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
 namespace fabledatalink.ViewModels
 {
-    public sealed class FableDataLinkViewModel: WorkspaceViewModel, IRecipient<SelectedProviderChangedMessage>
+    public sealed class FableDataLinkViewModel: ObservableRecipient
     {
-        private DatabaseProvider _selectedProvider;
+        private WorkspaceViewModel _selectedWorkspace;
+        private int _selectedWorkspaceIndex;
+        private bool _isConnectionViewEnabled;
 
         public FableDataLinkViewModel()
         {
-            // Register that specific message...
-            WeakReferenceMessenger.Default.Register(this);
-
-            // Register the receiver in a module
-            WeakReferenceMessenger.Default.Register<FableDataLinkViewModel, SelectedDatabaseProviderRequestMessage>(this, (r, m) =>
-            {
-                // Assume that "CurrentUser" is a private member in our viewmodel.
-                // As before, we're accessing it through the recipient passed as
-                // input to the handler, to avoid capturing "this" in the delegate.
-                m.Reply(r.SelectedProvider);
-            });
-
+            // Using a method group...
+            Messenger.Register<FableDataLinkViewModel, SelectedProviderChangedMessage>(this, (r, m) => r.Receive(m));
         }
 
-        public ObservableCollection<WorkspaceViewModel> WorkSpaces => new()
-        {
-            new ProviderViewModel(),
-            new ConnectionViewModel()
-        };
+        public ObservableCollection<WorkspaceViewModel> WorkSpaces { get; }
 
-        public DatabaseProvider SelectedProvider
+        public WorkspaceViewModel SelectedWorkspace
         {
-            get => _selectedProvider;
-            set => SetProperty(ref _selectedProvider, value);
+            get => _selectedWorkspace;
+            set => SetProperty(ref _selectedWorkspace, value);
         }
 
+        public int SelectedWorkspaceIndex
+        {
+            get => _selectedWorkspaceIndex;
+            set => SetProperty(ref _selectedWorkspaceIndex, value);
+        }
+
+        public bool IsConnectionViewEnabled
+        {
+            get => _isConnectionViewEnabled;
+            set => SetProperty(ref _isConnectionViewEnabled, value);
+        }
 
         public void Receive(SelectedProviderChangedMessage message)
         {
-            SelectedProvider = message.DatabaseProvider;
+            IsConnectionViewEnabled = message.DatabaseProvider != null;
         }
     }
 }

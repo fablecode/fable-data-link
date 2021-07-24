@@ -1,40 +1,36 @@
 ﻿using System;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.Toolkit.Mvvm.Messaging.Messages;
 
 namespace fabledatalink.ViewModels
 {
-    public sealed class ConnectionViewModel : WorkspaceViewModel
+    public sealed class ConnectionViewModel : ObservableRecipient
     {
         private WorkspaceViewModel? _selectedDatabaseProvider;
+        private bool _isEnabled;
 
         public ConnectionViewModel()
-            : this("Connection")
         {
-        }
-        public ConnectionViewModel(string provider)
-            : base(provider)
-        {
+            // Using a method group...
+            Messenger.Register<ConnectionViewModel, SelectedProviderChangedMessage>(this, (r, m) => r.Receive(m));
         }
 
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set => SetProperty(ref _isEnabled, value);
+        }
 
         public WorkspaceViewModel SelectedDatabaseProvider
         {
-            get => GetSelectedDatabaseProvider() ?? throw new ArgumentNullException(nameof(SelectedDatabaseProvider), $"{nameof(ConnectionViewModel)} -> {nameof(SelectedDatabaseProvider)}: Database provider not selected.");
+            get => _selectedDatabaseProvider;
             set => SetProperty(ref _selectedDatabaseProvider, value);
         }
 
-        private static WorkspaceViewModel? GetSelectedDatabaseProvider()
+        public void Receive(SelectedProviderChangedMessage message)
         {
-            // Request selected database provider
-            var databaseProvider = WeakReferenceMessenger.Default.Send<SelectedDatabaseProviderRequestMessage>();
-
-            if (databaseProvider.HasReceivedResponse && databaseProvider.Response != null)
-            {
-                return databaseProvider.Response.WorkSpace;
-            }
-
-            return null;
+            SelectedDatabaseProvider = message.DatabaseProvider.WorkSpace;
         }
     }
 

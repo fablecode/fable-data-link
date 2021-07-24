@@ -4,6 +4,7 @@
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:vm="clr-namespace:fabledatalink.ViewModels"
+                  xmlns:uc="clr-namespace:fabledatalink.Views.UserControls"
                   mc:Ignorable="d"
                   Title="Fable Data Link" Height="469" Width="366" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
     <Window.DataContext>
@@ -17,12 +18,24 @@
             <RowDefinition Height="9*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <TabControl Margin="10,10,10,0" Grid.Row="0" TabStripPlacement="Top" ItemsSource="{Binding WorkSpaces}">
+        <!--<TabControl Margin="10,10,10,0" Grid.Row="0"
+                    ItemsSource="{Binding WorkSpaces, Mode=OneTime, UpdateSourceTrigger=PropertyChanged}" 
+                    IsSynchronizedWithCurrentItem="True" 
+                    SelectedIndex="{Binding SelectedWorkspaceIndex}"
+                    SelectedItem="{Binding SelectedWorkspace}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding DisplayName}"/>
                 </DataTemplate>
             </TabControl.ItemTemplate>
+        </TabControl>-->
+        <TabControl Margin="10,10,10,0" Grid.Row="0">
+            <TabItem Header="Providers">
+                <uc:Providers></uc:Providers>
+            </TabItem>
+            <TabItem Header="Connection" IsEnabled="{Binding IsConnectionViewEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <uc:Connections />
+            </TabItem>
         </TabControl>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,5,10,0">
             <Button Content="OK" Margin="0, 0, 5, 0" Padding="25, 0"/>
