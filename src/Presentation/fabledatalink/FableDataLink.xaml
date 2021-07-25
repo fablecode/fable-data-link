@@ -1,4 +1,4 @@
-﻿<Window x:Class="fabledatalink.MainWindow"
+﻿<Window x:Class="fabledatalink.FableDataLinkWindow"
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,7 @@
                   Icon="/favicon.ico"
                   Title="Fable Data Link" Height="469" Width="366" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" x:Name="AppWindow">
     <Window.DataContext>
-        <vm:FableDataLinkViewModel />
+        <Binding Source="{StaticResource Locator}" Path="FableDataLinkViewModel"/>
     </Window.DataContext>
     <Window.Resources>
         <ResourceDictionary Source="/Views/Resources/FableDataLinkResources.xaml"/>

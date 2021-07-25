@@ -4,17 +4,20 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
+using MediatR;
 
 namespace fabledatalink.ViewModels
 {
     public sealed class ProviderViewModel : ObservableObject
     {
+        private readonly IMediator _mediator;
         private DatabaseProvider _selectedProvider = null!;
         private bool _isNextButtonEnabled;
         private int _selectedProviderIndex;
 
-        public ProviderViewModel()
+        public ProviderViewModel(IMediator mediator)
         {
+            _mediator = mediator;
             NextCommand = new RelayCommand(OnNextCommand);
         }
 
