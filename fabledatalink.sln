@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31402.337
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Core", "1. Core", "{636766FB-A790-4BE0-B3D9-3DACC9166488}"
 EndProject
@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Tests", "6. Tests", "{1E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{72D68C75-0F22-4DF2-98CB-ACD1A51DF65B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fabledatalink", "Presentation\fabledatalink\fabledatalink.csproj", "{9501DA40-F2DD-405A-B6D5-FCEA49BD7C30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fabledatalink", "src\Presentation\fabledatalink\fabledatalink.csproj", "{10855FB6-BBE5-484D-A724-EB3E1E6E9F7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,17 +25,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9501DA40-F2DD-405A-B6D5-FCEA49BD7C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9501DA40-F2DD-405A-B6D5-FCEA49BD7C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9501DA40-F2DD-405A-B6D5-FCEA49BD7C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9501DA40-F2DD-405A-B6D5-FCEA49BD7C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10855FB6-BBE5-484D-A724-EB3E1E6E9F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10855FB6-BBE5-484D-A724-EB3E1E6E9F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10855FB6-BBE5-484D-A724-EB3E1E6E9F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10855FB6-BBE5-484D-A724-EB3E1E6E9F7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{72D68C75-0F22-4DF2-98CB-ACD1A51DF65B} = {1ED183B2-C9C3-410A-BDC7-A275CD54923F}
-		{9501DA40-F2DD-405A-B6D5-FCEA49BD7C30} = {8C20E808-2927-485C-B9C6-B4F5651BF537}
+		{10855FB6-BBE5-484D-A724-EB3E1E6E9F7D} = {8C20E808-2927-485C-B9C6-B4F5651BF537}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {734B49C7-A1D7-41AD-8935-CC2CFDC1FDBD}
